@@ -13,10 +13,11 @@ static NSColor* colorFromString(NSString *colorString, NSColor *defaultColor, CG
 	if ([colorString isKindOfClass:[NSString class]]) {
 		long r, g, b, a = defaultAlpha * 255;
 		BOOL valid = NO;
+		NSString *hexColor = [colorString stringByTrimmingCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789abcdefABCDEF"] invertedSet]];
 		if ([colorString length] >= 6) {
-			NSString *red   = [colorString substringWithRange:NSMakeRange(0, 2)];
-			NSString *green = [colorString substringWithRange:NSMakeRange(2, 2)];
-			NSString *blue  = [colorString substringWithRange:NSMakeRange(4, 2)];
+			NSString *red   = [hexColor substringWithRange:NSMakeRange(0, 2)];
+			NSString *green = [hexColor substringWithRange:NSMakeRange(2, 2)];
+			NSString *blue  = [hexColor substringWithRange:NSMakeRange(4, 2)];
 			r = strtol([red UTF8String],   NULL, 16);
 			g = strtol([green UTF8String], NULL, 16);
 			b = strtol([blue UTF8String],  NULL, 16);
@@ -24,7 +25,7 @@ static NSColor* colorFromString(NSString *colorString, NSColor *defaultColor, CG
 		}
 		
 		if ([colorString length] == 8) {
-			NSString *alpha = [colorString substringWithRange:NSMakeRange(6, 2)];
+			NSString *alpha = [hexColor substringWithRange:NSMakeRange(6, 2)];
 			a = strtol([alpha UTF8String], NULL, 16);
 		}
 		
