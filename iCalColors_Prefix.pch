@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'iCalColors' target in the 'iCalColors' project.
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
